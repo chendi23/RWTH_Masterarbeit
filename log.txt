@@ -1,0 +1,13 @@
+Namespace(affine=False, base_lr=0.05, batch_size=4, block_multiplier=5, bn_eps=1e-05, bn_momentum=0.995, cell_arch=None, ckpt_name=None, ckpt_url='', criterion='ohemce', crop_size=256, data_path='/work/scratch/chendi/ms_record', data_url='', device_target='GPU', drop_path_keep_prob=1.0, epochs=5, eval_flip=True, file_format='MINDIR', filter_multiplier=20, ignore_label=255, img_url='', initial_fm=None, min_lr=None, modelArts=False, ms_infer=False, net_arch=None, num_classes=19, ohem_thresh=0.7, out_path='/home/students/chendi/projects/Auto-DeepLab-main/OUTPUTS/ckpt', parallel=False, save_epochs=100, seed=0, split='train', start_epoch=0, total_iters=3715, train_url='', use_ABN=True, warmup_iters=1000, warmup_start_lr=5e-06, weight_decay=0.0001, workers=4)
+=> Trying build ohemceloss
+Using Poly LR Scheduler!
+epoch: 1 step: 743, loss is 2.199357509613037
+Train epoch time: 334760.257 ms, per step time: 450.552 ms
+epoch: 2 step: 743, loss is 1.806492567062378
+Train epoch time: 281477.696 ms, per step time: 378.839 ms
+epoch: 3 step: 743, loss is 1.4956649541854858
+Train epoch time: 281671.120 ms, per step time: 379.100 ms
+epoch: 4 step: 743, loss is 1.8818671703338623
+Train epoch time: 281464.090 ms, per step time: 378.821 ms
+epoch: 5 step: 743, loss is 1.5683519840240479
+Train epoch time: 280305.380 ms, per step time: 377.262 ms
