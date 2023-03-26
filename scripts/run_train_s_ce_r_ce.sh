@@ -41,8 +41,8 @@ export RANK_SIZE=1
 export SLOG_PRINT_TO_STDOUT=0
 export DATASET_PATH=$2
 export EPOCHS=$3
-TRAIN_CODE_PATH=/home/students/chendi/projects/Auto-DeepLab-main
-OUTPUT_PATH=${TRAIN_CODE_PATH}/OUTPUTS_769_s_ce_r_ce
+TRAIN_CODE_PATH=/home/students/yuehan/projects/ADL_MS
+OUTPUT_PATH=${TRAIN_CODE_PATH}/default
 
 #if [ -d "${OUTPUT_PATH}" ]; then
 #  echo "${OUTPUT_PATH} already exists"
