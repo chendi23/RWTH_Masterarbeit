@@ -45,7 +45,7 @@ def obtain_autodeeplab_args():
 
     # architecture
     parser.add_argument('--filter_multiplier', type=int, default=20)
-    parser.add_argument('--parallel', type=ast.literal_eval, default=True)
+    parser.add_argument('--parallel', type=ast.literal_eval, default=False)
     parser.add_argument('--block_multiplier', type=int, default=5)
     parser.add_argument('--use_ABN', type=ast.literal_eval, default=True, help='whether use ABN')
     parser.add_argument('--affine', type=ast.literal_eval, default=True, help='whether use affine in BN')
