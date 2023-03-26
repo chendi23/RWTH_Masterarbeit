@@ -42,8 +42,7 @@ export SLOG_PRINT_TO_STDOUT=0
 export DATASET_PATH=$2
 export CKPT_FILE=$3
 export OUTPUT_PATH=$4
-TRAIN_CODE_PATH=/home/students/chendi/projects/Auto-DeepLab-main
-
+TRAIN_CODE_PATH=/home/students/yuehan/projects/ADL_MS
 #if [ -d "${OUTPUT_PATH}" ]; then
 #  echo "${OUTPUT_PATH} already exists"
 #  exit 1
@@ -53,7 +52,7 @@ TRAIN_CODE_PATH=/home/students/chendi/projects/Auto-DeepLab-main
 #mkdir "${OUTPUT_PATH}"/ckpt
 cd "${OUTPUT_PATH}"/device${DEVICE_ID} #|| exit
 
-/work/scratch/chendi/anaconda3/envs/py3.8/bin/python "${TRAIN_CODE_PATH}"/eval.py --out_path="${OUTPUT_PATH}"/ckpt \
+/home/students/yuehan/anaconda3/envs/py38/bin/python "${TRAIN_CODE_PATH}"/eval.py --out_path="${OUTPUT_PATH}"/ckpt \
                                       --data_path="${DATASET_PATH}" \
                                       --modelArts=False \
                                       --parallel=False \
@@ -61,11 +60,10 @@ cd "${OUTPUT_PATH}"/device${DEVICE_ID} #|| exit
                                       --batch_size=1 \
                                       --split=val \
                                       --ms_infer=False \
-                                      --searched_with=focal \
-                                      --criterion=analysis \
-                                      --get_embeddings_eval=1 \
-                                      --analysis_preds_embs=1 \
+                                      --criterion=ohemce \
+                                      --get_embeddings_eval=0 \
+                                      --analysis_preds_embs=0 \
                                       --pred_out_suffix=focal_spc_preds \
                                       --embs_out_suffix=focal_spc_embs \
                                       --feats_out_suffix=focal_spc_ll_feats \
-                                      --ckpt_name="${CKPT_FILE}" >>eval_s_focal_r_focal_spc_log.txt 2>&1
+                                      --ckpt_name="${CKPT_FILE}" >>eval_default.txt 2>&1

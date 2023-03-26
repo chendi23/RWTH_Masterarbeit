@@ -53,7 +53,7 @@ mkdir "${OUTPUT_PATH}"/device"${DEVICE_ID}"
 mkdir "${OUTPUT_PATH}"/ckpt
 cd "${OUTPUT_PATH}"/device"${DEVICE_ID}" #|| exit
 
-/work/scratch/chendi/anaconda3/envs/py3.8/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt --data_path="${DATASET_PATH}" --modelArts=False --parallel=False --batch_size=8 --affine=False --start_epoch=0 --epochs="${EPOCHS}" >>log_s_ce_r_ce_bs6.txt 2>&1
+/home/students/yuehan/anaconda3/envs/py38/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt --data_path="${DATASET_PATH}" --modelArts=False --parallel=False --batch_size=2 --affine=False --start_epoch=0 --epochs="${EPOCHS}" >>retrain_defalut.txt 2>&1
 
 #/work/scratch/chendi/anaconda3/envs/py3.8/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt \
 #                                      --data_path="${DATASET_PATH}" \

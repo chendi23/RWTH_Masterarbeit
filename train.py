@@ -39,8 +39,8 @@ from src.utils.utils import prepare_seed
 device_id = int(os.getenv('DEVICE_ID'))
 device_num = int(os.getenv('RANK_SIZE'))
 
-local_data_url = "/work/scratch/chendi/cache/data"
-local_train_url = "/work/scratch/chendi/cache/train"
+local_data_url = "/work/scratch/yuehan/cache/data"
+local_train_url = "/work/scratch/yuehan/cache/train"
 
 
 def train():
@@ -168,7 +168,7 @@ def train():
     model.train(epochs, train_ds, callbacks=cbs, dataset_sink_mode=True)
 
     if args.modelArts:
-        mox.file.copy_parallel(src_url="/work/scratch/chendi/cache/train", dst_url=args.train_url)
+        mox.file.copy_parallel(src_url="/work/scratch/yuehan/cache/train", dst_url=args.train_url)
         mox.file.copy_parallel(src_url='./tmp', dst_url=args.train_url)
 
     # to avoid exit
