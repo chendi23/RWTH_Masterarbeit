@@ -44,13 +44,13 @@ export EPOCHS=$3
 TRAIN_CODE_PATH=/home/students/yuehan/projects/ADL_MS
 OUTPUT_PATH=${TRAIN_CODE_PATH}/default
 
-if [ -d "${OUTPUT_PATH}" ]; then
-  echo "${OUTPUT_PATH} already exists"
-  exit 1
-fi
-mkdir -p "${OUTPUT_PATH}"
-mkdir "${OUTPUT_PATH}"/device"${DEVICE_ID}"
-mkdir "${OUTPUT_PATH}"/ckpt
+#if [ -d "${OUTPUT_PATH}" ]; then
+#  echo "${OUTPUT_PATH} already exists"
+#  exit 1
+#fi
+#mkdir -p "${OUTPUT_PATH}"
+#mkdir "${OUTPUT_PATH}"/device"${DEVICE_ID}"
+#mkdir "${OUTPUT_PATH}"/ckpt
 cd "${OUTPUT_PATH}"/device"${DEVICE_ID}" #|| exit
 
 /home/students/yuehan/anaconda3/envs/py38/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt --data_path="${DATASET_PATH}" --modelArts=False --parallel=False --batch_size=2 --affine=False --start_epoch=0 --epochs="${EPOCHS}" >>retrain_defalut.txt 2>&1
