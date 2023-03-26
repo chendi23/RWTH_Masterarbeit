@@ -1,0 +1,220 @@
+# 1.This file shows the parsed IR info when graph evaluating failed to help find the problem.
+# 2.You can search the last `------------------------>` to the node which is inferred failed.
+# 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.dat to get more instructions.
+# ===============================================================================
+
+# [No.1] construct_wrapper.1
+# In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(261)/    def construct(self, feats, labels, predict):/
+funcgraph fg_1(
+        %para1 : Tensor(F32)[2, 16, 32, 32]    # feats
+        , %para2 : Tensor(F32)[2, 32, 32]    # labels
+        , %para3 : Tensor(F32)[2, 4, 32, 32]    # predict
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_7(%para1, %para2, %para3)    #(Tensor(F32)[2, 16, 32, 32], Tensor(F32)[2, 32, 32], Tensor(F32)[2, 4, 32, 32])    # fg_7=construct.7 #scope: Default
+#[CNode]10
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]11
+}
+# order:
+#   1: construct_wrapper.1:[CNode]10{[0]: ValueNode<FuncGraph> construct.7, [1]: feats, [2]: labels, [3]: predict}
+#   2: construct_wrapper.1:[CNode]11{[0]: ValueNode<Primitive> Return, [1]: [CNode]10}
+
+
+# [No.2] construct.7
+# In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(261)/    def construct(self, feats, labels, predict):/
+funcgraph fg_7(
+        %para4 : Tensor(F32)[2, 16, 32, 32]    # feats
+        , %para5 : Tensor(F32)[2, 32, 32]    # labels
+        , %para6 : Tensor(F32)[2, 4, 32, 32]    # predict
+    ) {
+    %1 : Tensor(F16)[2, 32, 32] = DoSignaturePrimitive::S-Prim-Cast{prim_type=1}[output_names=["output"], input_names=["x", "dst_type"], SrcT=F32, DstT=F16, dst_type=F16](%para5, F16)    #(Tensor(F32)[2, 32, 32], TypeType) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(268)/        labels = ops.cast(labels, mindspore.float16)/#labels
+    %2 : Tuple[I64*3] = Primitive::getattr{prim_type=1}(%1, "shape")    #(Tensor(F16)[2, 32, 32], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]12
+    %3 : I64 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]13
+    %4 : I64 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%2, %3)    #(Tuple[I64*3], I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]14
+    %5 : Tuple[I64*4] = Primitive::getattr{prim_type=1}(%para4, "shape")    #(Tensor(F32)[2, 16, 32, 32], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]15
+    %6 : I64 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]16
+    %7 : I64 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%5, %6)    #(Tuple[I64*4], I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]17
+    %8 : Bool = DoSignaturePrimitive::S-Prim-equal{prim_type=1}(%4, %7)    #(I64, I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]18
+    %9 : Bool = FuncGraph::fg_19(%8)    #(Bool)    # fg_19=bool_.19 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]20
+    %10 : Func = Primitive::Switch{prim_type=1}(%9, FuncGraph::fg_8, FuncGraph::fg_21)    #(Bool, Func, Func)    # fg_8=8.8, fg_21=21.21 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]22
+
+#------------------------> 1
+    %11 = %10() #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]23
+    Primitive::Return{prim_type=1}(%11)    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]24
+}
+# order:
+#   1: construct.7:[CNode]25{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: predict}
+#   2: construct.7:[CNode]26{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<StringImm> axis}
+#   3: construct.7:[CNode]27{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<Int64Imm> 1}
+#   4: construct.7:[CNode]28{[0]: ValueNode<DoSignaturePrimitive> S-Prim-make_dict, [1]: [CNode]26, [2]: [CNode]27}
+#   5: construct.7:[CNode]29{[0]: ValueNode<UnpackCall> unpack_call.30, [1]: ValueNode<FuncGraph> max.31, [2]: [CNode]25, [3]: [CNode]28}
+#   6: construct.7:[CNode]32{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]29, [2]: ValueNode<Int64Imm> 0}
+#   7: construct.7:predict{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Cast, [1]: [CNode]32, [2]: ValueNode<Int> Int16}
+#   8: construct.7:labels{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Cast, [1]: labels, [2]: ValueNode<Float> Float16}
+#   9: construct.7:[CNode]12{[0]: ValueNode<Primitive> getattr, [1]: labels, [2]: ValueNode<StringImm> shape}
+#  10: construct.7:[CNode]13{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#  11: construct.7:[CNode]14{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]12, [2]: [CNode]13}
+#  12: construct.7:[CNode]15{[0]: ValueNode<Primitive> getattr, [1]: feats, [2]: ValueNode<StringImm> shape}
+#  13: construct.7:[CNode]16{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#  14: construct.7:[CNode]17{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]15, [2]: [CNode]16}
+#  15: construct.7:[CNode]18{[0]: ValueNode<DoSignaturePrimitive> S-Prim-equal, [1]: [CNode]14, [2]: [CNode]17}
+#  16: construct.7:[CNode]20{[0]: ValueNode<FuncGraph> bool_.19, [1]: [CNode]18}
+#  17: construct.7:[CNode]22{[0]: ValueNode<Primitive> Switch, [1]: [CNode]20, [2]: ValueNode<FuncGraph> 8.8, [3]: ValueNode<FuncGraph> 21.21}
+#  18: construct.7:[CNode]23{[0]: [CNode]22}
+#  19: construct.7:[CNode]24{[0]: ValueNode<Primitive> Return, [1]: [CNode]23}
+
+
+# [No.3] 8.8
+# In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/
+funcgraph fg_8[fg_7](
+) {
+
+#------------------------> 2
+    %1 = FuncGraph::fg_9()    # fg_9=9.9 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]33
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/#[CNode]34
+}
+# order:
+#   1: 8.8:[CNode]33{[0]: ValueNode<FuncGraph> 9.9}
+#   2: 8.8:[CNode]34{[0]: ValueNode<Primitive> Return, [1]: [CNode]33}
+
+
+# [No.4] 9.9
+# In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(269)/        assert labels.shape[-1] == feats.shape[-1], '{} {}'.format(labels.shape, feats.shape)/
+funcgraph fg_9[fg_7](
+) {
+    %1 : Func = Primitive::getattr{prim_type=1}(%para4, "transpose")    #(Tensor(F32)[2, 16, 32, 32], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(275)/        feats = feats.transpose(0, 2, 3, 1)/#[CNode]35
+    %2 : Tensor(F32)[2, 32, 32, 16] = %1(I64(0), I64(2), I64(3), I64(1))    #(I64, I64, I64, I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(275)/        feats = feats.transpose(0, 2, 3, 1)/#feats
+    %3 : Func = Primitive::getattr{prim_type=1}(%2, "view")    #(Tensor(F32)[2, 32, 32, 16], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]36
+    %4 : Tuple[I64*4] = Primitive::getattr{prim_type=1}(%2, "shape")    #(Tensor(F32)[2, 32, 32, 16], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]37
+    %5 : I64 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%4, I64(0))    #(Tuple[I64*4], I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]38
+    %6 : I64 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]39
+    %7 : Tuple[I64*4] = Primitive::getattr{prim_type=1}(%2, "shape")    #(Tensor(F32)[2, 32, 32, 16], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]40
+    %8 : I64 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]41
+    %9 : I64 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%7, %8)    #(Tuple[I64*4], I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#[CNode]42
+    %10 : Tensor(F32)[2, 1024, 16] = %3(%5, %6, %9)    #(I64, I64, I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(276)/        feats = feats.view(feats.shape[0], -1, feats.shape[-1])/#feats
+    %11 : $(construct.7):Tensor(F16)[2, 32, 32] = DoSignaturePrimitive::S-Prim-Cast{prim_type=1}[output_names=["output"], input_names=["x", "dst_type"], SrcT=F32, DstT=F16, dst_type=F16](%para5, F16)    #(Tensor(F32)[2, 32, 32], TypeType) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(268)/        labels = ops.cast(labels, mindspore.float16)/#labels
+    %12 : Func = Primitive::getattr{prim_type=1}(%11, "view")    #(Tensor(F16)[2, 32, 32], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(273)/        labels = labels.view(batch_size, -1)/#[CNode]43
+    %13 : Tuple[I64*4] = Primitive::getattr{prim_type=1}(%para4, "shape")    #(Tensor(F32)[2, 16, 32, 32], String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(271)/        batch_size = feats.shape[0]/#[CNode]44
+    %14 : I64 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%13, I64(0))    #(Tuple[I64*4], I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(271)/        batch_size = feats.shape[0]/#batch_size
+    %15 : I64 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(273)/        labels = labels.view(batch_size, -1)/#[CNode]45
+    %16 : Tensor(F16)[2, 1024] = %12(%14, %15)    #(I64, I64) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(273)/        labels = labels.view(batch_size, -1)/#labels
+    %17 : Tuple[String*3] = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}("labels_unique", "np", "len")    #(String, String, String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(278)/        labels_unique = np.pad(labels_unique, (2 - len(labels_unique)), 'constant', constant_values=0)/#[CNode]46
+    %18 : Tuple[String*2] = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}("labels", "np")    #(String, String) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(277)/        labels_unique = np.unique(labels,axis=1)/#[CNode]47
+    %19 : Tuple[Tensor(F16),ExternalType] = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%16, NameSpace::Module)    #(Tensor(F16)[2, 1024], ExternalType) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(277)/        labels_unique = np.unique(labels,axis=1)/#[CNode]48
+    %20 : Dictionary[[labels,np,],[Tensor[Float16],External]] = DoSignaturePrimitive::S-Prim-make_dict{prim_type=1}(%18, %19)    #(Tuple[String*2], Tuple[Tensor(F16),ExternalType]) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(277)/        labels_unique = np.unique(labels,axis=1)/#[CNode]49
+
+#------------------------> 3
+    %21 = Primitive::PyInterpret{prim_type=1}(Script['np.unique(labels,axis=1)'], {"ops": NameSpace::Module, "mindspore": NameSpace::Module, "np": NameSpace::Module}, %20)    #(String, Dictionary[[ops,mindspore,np,],[External*3]], Dictionary[[labels,np,],[Tensor[Float16],External]]) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(277)/        labels_unique = np.unique(labels,axis=1)/#labels_unique
+    %22 = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%21, NameSpace::Module, FuncGraph::fg_50)    #(Undefined, ExternalType, Undefined)    # fg_50=ms_len.50 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(278)/        labels_unique = np.pad(labels_unique, (2 - len(labels_unique)), 'constant', constant_values=0)/#[CNode]51
+    %23 = DoSignaturePrimitive::S-Prim-make_dict{prim_type=1}(%17, %22)    #(Tuple[String*3], Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(278)/        labels_unique = np.pad(labels_unique, (2 - len(labels_unique)), 'constant', constant_values=0)/#[CNode]52
+    %24 = Primitive::PyInterpret{prim_type=1}(Script['np.pad(labels_unique, (2 - len(labels_unique)), 'constant', constant_values=0)'], {"ops": NameSpace::Module, "mindspore": NameSpace::Module, "np": NameSpace::Module, "len": InterpretedObject}, %23)    #(Undefined, Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(278)/        labels_unique = np.pad(labels_unique, (2 - len(labels_unique)), 'constant', constant_values=0)/#labels_unique
+    %25 = ClassType(%24)    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(279)/        labels_unique = ops.Tensor(labels_unique)/#labels_unique
+    %26 = $(construct.7):DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%para6)    #(Tensor(F32)[2, 4, 32, 32]) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#[CNode]25
+    %27 = $(construct.7):DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}("axis")    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#[CNode]26
+    %28 = $(construct.7):DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(I64(1))    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#[CNode]27
+    %29 = $(construct.7):DoSignaturePrimitive::S-Prim-make_dict{prim_type=1}(%27, %28)    #(Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#[CNode]28
+    %30 = $(construct.7):UnpackCall::unpack_call(FuncGraph::fg_31, %26, %29)    #(Undefined, Undefined, Undefined)    # fg_31=max.31 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#[CNode]29
+    %31 = $(construct.7):DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%30, I64(0))    #(Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#[CNode]32
+    %32 = $(construct.7):DoSignaturePrimitive::S-Prim-Cast{prim_type=1}[output_names=["output"], input_names=["x", "dst_type"], SrcT=F32, DstT=F16, dst_type=F16](%31, I16)    #(Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(267)/        predict = ops.cast(ops.max(predict, axis=1)[0], mindspore.int16)/#predict
+    %33 = Primitive::getattr{prim_type=1}(%32, "view")    #(Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(274)/        predict = predict.view(batch_size, -1)/#[CNode]53
+    %34 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(I64(1))    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(274)/        predict = predict.view(batch_size, -1)/#[CNode]54
+    %35 = %33(%14, %34)    #(I64, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(274)/        predict = predict.view(batch_size, -1)/#predict
+    %36 = FuncGraph::fg_55(%10, %16, %25, %35)    #(Tensor(F32)[2, 1024, 16], Tensor(F16)[2, 1024], Undefined, Undefined)    # fg_55=_hard_anchor_sampling.55 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(280)/        feats_, labels_ = self._hard_anchor_sampling(feats, labels,labels_unique,predict)/#[CNode]56
+    %37 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%36, I64(0))    #(Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(280)/        feats_, labels_ = self._hard_anchor_sampling(feats, labels,labels_unique,predict)/#feats_
+    %38 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%36, I64(1))    #(Undefined, Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(280)/        feats_, labels_ = self._hard_anchor_sampling(feats, labels,labels_unique,predict)/#labels_
+    %39 = FuncGraph::fg_57(%37, %38)    #(Undefined, Undefined)    # fg_57=_contrastive.57 #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(281)/        loss = self._contrastive(feats_, labels_)/#loss
+    Primitive::Return{prim_type=1}(%39)    #(Undefined) #scope: Default
+      # In file /Users/chendi/PycharmProjects/ms_autodeeplab/src/utils/loss_GraphMode.py(282)/        return loss/#[CNode]58
+}
+# order:
+#   1: 9.9:[CNode]44{[0]: ValueNode<Primitive> getattr, [1]: feats, [2]: ValueNode<StringImm> shape}
+#   2: 9.9:batch_size{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]44, [2]: ValueNode<Int64Imm> 0}
+#   3: 9.9:[CNode]43{[0]: ValueNode<Primitive> getattr, [1]: labels, [2]: ValueNode<StringImm> view}
+#   4: 9.9:[CNode]45{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#   5: 9.9:labels{[0]: [CNode]43, [1]: batch_size, [2]: [CNode]45}
+#   6: 9.9:[CNode]53{[0]: ValueNode<Primitive> getattr, [1]: predict, [2]: ValueNode<StringImm> view}
+#   7: 9.9:[CNode]54{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#   8: 9.9:predict{[0]: [CNode]53, [1]: batch_size, [2]: [CNode]54}
+#   9: 9.9:[CNode]35{[0]: ValueNode<Primitive> getattr, [1]: feats, [2]: ValueNode<StringImm> transpose}
+#  10: 9.9:feats{[0]: [CNode]35, [1]: ValueNode<Int64Imm> 0, [2]: ValueNode<Int64Imm> 2, [3]: ValueNode<Int64Imm> 3, [4]: ValueNode<Int64Imm> 1}
+#  11: 9.9:[CNode]36{[0]: ValueNode<Primitive> getattr, [1]: feats, [2]: ValueNode<StringImm> view}
+#  12: 9.9:[CNode]37{[0]: ValueNode<Primitive> getattr, [1]: feats, [2]: ValueNode<StringImm> shape}
+#  13: 9.9:[CNode]38{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]37, [2]: ValueNode<Int64Imm> 0}
+#  14: 9.9:[CNode]39{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#  15: 9.9:[CNode]40{[0]: ValueNode<Primitive> getattr, [1]: feats, [2]: ValueNode<StringImm> shape}
+#  16: 9.9:[CNode]41{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: ValueNode<Int64Imm> 1}
+#  17: 9.9:[CNode]42{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]40, [2]: [CNode]41}
+#  18: 9.9:feats{[0]: [CNode]36, [1]: [CNode]38, [2]: [CNode]39, [3]: [CNode]42}
+#  19: 9.9:[CNode]47{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<StringImm> labels, [2]: ValueNode<StringImm> np}
+#  20: 9.9:[CNode]48{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: labels, [2]: ValueNode<NameSpace> Module: 'Namespace:numpy'}
+#  21: 9.9:[CNode]49{[0]: ValueNode<DoSignaturePrimitive> S-Prim-make_dict, [1]: [CNode]47, [2]: [CNode]48}
+#  22: 9.9:labels_unique{[0]: ValueNode<Primitive> PyInterpret, [1]: ValueNode<Script> 'np.unique(labels,axis=1)', [2]: ValueNode<ValueDictionary> dict: {keys: (ops, mindspore, np), values: (Module: 'Namespace:mindspore.ops', Module: 'Namespace:mindspore', Module: 'Namespace:numpy')}, [3]: [CNode]49}
+#  23: 9.9:[CNode]46{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<StringImm> labels_unique, [2]: ValueNode<StringImm> np, [3]: ValueNode<StringImm> len}
+#  24: 9.9:[CNode]51{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: labels_unique, [2]: ValueNode<NameSpace> Module: 'Namespace:numpy', [3]: ValueNode<FuncGraph> ms_len.50}
+#  25: 9.9:[CNode]52{[0]: ValueNode<DoSignaturePrimitive> S-Prim-make_dict, [1]: [CNode]46, [2]: [CNode]51}
+#  26: 9.9:labels_unique{[0]: ValueNode<Primitive> PyInterpret, [1]: ValueNode<Script> 'np.pad(labels_unique, (2 - len(labels_unique)), 'constant', constant_values=0)', [2]: ValueNode<ValueDictionary> dict: {keys: (ops, mindspore, np, len), values: (Module: 'Namespace:mindspore.ops', Module: 'Namespace:mindspore', Module: 'Namespace:numpy', InterpretedObject: '<built-in function len>')}, [3]: [CNode]52}
+#  27: 9.9:labels_unique{[0]: ValueNode<ClassType> class 'mindspore.common.tensor.Tensor', [1]: labels_unique}
+#  28: 9.9:[CNode]56{[0]: ValueNode<FuncGraph> _hard_anchor_sampling.55, [1]: feats, [2]: labels, [3]: labels_unique, [4]: predict}
+#  29: 9.9:feats_{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]56, [2]: ValueNode<Int64Imm> 0}
+#  30: 9.9:labels_{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]56, [2]: ValueNode<Int64Imm> 1}
+#  31: 9.9:loss{[0]: ValueNode<FuncGraph> _contrastive.57, [1]: feats_, [2]: labels_}
+#  32: 9.9:[CNode]58{[0]: ValueNode<Primitive> Return, [1]: loss}
+
+
+#===============================================================================
+# num of function graphs in stack: 4
