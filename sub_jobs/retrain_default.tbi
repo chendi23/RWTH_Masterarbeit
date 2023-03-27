@@ -26,7 +26,7 @@ cmd =/home/students/yuehan/projects/ADL_MS/scripts/run_retrain_default.sh
 args =0 /work/scratch/yuehan/ms_record 1344
 
 # start directory
-initialdir = /home/students/yuehan/projects/Seg-NAS
+initialdir = /home/students/yuehan/projects/ADL_MS
 
 # define output, error and log file
 output = /work/scratch/yuehan/logs/loc_$(cluster).$(Process)_out.log
