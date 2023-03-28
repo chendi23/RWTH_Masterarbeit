@@ -53,7 +53,7 @@ OUTPUT_PATH=${TRAIN_CODE_PATH}/default
 #mkdir "${OUTPUT_PATH}"/ckpt
 cd "${OUTPUT_PATH}"/device"${DEVICE_ID}" #|| exit
 
-/home/students/yuehan/anaconda3/envs/py38/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt --data_path="${DATASET_PATH}" --modelArts=False --parallel=False --batch_size=8 --affine=False --start_epoch=450 --ckpt_name=/home/students/yuehan/projects/ADL_MS/default/ckpt/device/autodeeplab-paral_1-450_371.ckpt --epochs="${EPOCHS}" >>retrain_defalut.txt 2>&1
+/home/students/yuehan/anaconda3/envs/py38/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt --data_path="${DATASET_PATH}" --modelArts=False --parallel=False --batch_size=8 --affine=False --start_epoch=450 --ckpt_name=/home/students/yuehan/projects/ADL_MS/default/ckpt/device/autodeeplab-paral_1-625_371.ckpt --epochs="${EPOCHS}" >>retrain_defalut.txt 2>&1
 
 #/work/scratch/chendi/anaconda3/envs/py3.8/bin/python "${TRAIN_CODE_PATH}"/train.py --out_path="${OUTPUT_PATH}"/ckpt \
 #                                      --data_path="${DATASET_PATH}" \
