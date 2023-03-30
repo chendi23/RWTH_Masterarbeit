@@ -161,7 +161,7 @@ def train():
     cbs = [loss_cb, time_cb]
 
     # callback for saving ckpt
-    config_ckpt = CheckpointConfig(save_checkpoint_steps=args.save_epochs * iter_per_epoch, keep_checkpoint_max=40)
+    config_ckpt = CheckpointConfig(save_checkpoint_steps=args.save_epochs * iter_per_epoch, keep_checkpoint_max=60)
     ckpt_cb = ModelCheckpoint(prefix='autodeeplab-paral', directory=device_train_url, config=config_ckpt)
     cbs += [ckpt_cb]
 
