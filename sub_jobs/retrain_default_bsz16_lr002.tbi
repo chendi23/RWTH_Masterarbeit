@@ -20,10 +20,10 @@
 ######################################################################
 
 # Shell script that you want to execute
-cmd =/home/students/yuehan/projects/ADL_MS/scripts/run_eval.sh
+cmd =/home/students/yuehan/projects/ADL_MS/scripts/run_retrain_default_bsz_16_lr002.sh
 
 # command line arguments
-args =0 /work/scratch/yuehan/ms_record/ /home/students/yuehan/projects/ADL_MS/default_lr002/ckpt/device/autodeeplab-paral_1-950_371.ckpt /home/students/yuehan/projects/ADL_MS/default_bsz_16_lr002/
+args =0 /work/scratch/yuehan/ms_record 1344
 
 # start directory
 initialdir = /home/students/yuehan/projects/ADL_MS
